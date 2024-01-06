@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body, html{
+    height: 100%;
+}
+
+#combate{
+    height: 80%;
+    background-color: black;
+    color: white;
+}
+
+.personaje{
+    display: flex;
+    flex-direction: column;
+}
+
+#elecciones{
+    height: 20%;
+    background-color: rgb(151, 43, 4);
+    
+}
+
+.boton{
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#combate, #elecciones{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
