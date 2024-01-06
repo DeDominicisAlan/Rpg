@@ -6,6 +6,8 @@ const siguiente = document.getElementById("siguiente");
 const ataque = document.getElementById("ataque");
 const habilidad = document.getElementById("habilidad");
 
+
+//Clases
 class npc{
 
     constructor(vida,ataque,defensa){
@@ -40,6 +42,10 @@ class npc{
         return this.vida;
     }
     
+    getVidaMax(){
+        return this.vidaMax;
+    }
+    
     getDefensa(){
         return this.defensa;
     }
@@ -52,10 +58,12 @@ class npc{
         enemigo.setVida( enemigo.getVida() - (this.ataque - enemigo.getDefensa() ) )
     }
     
+    daño(enemigo){
+        return (this.ataque - enemigo.getDefensa())
+    }
+    
     habilidad(){
-        this.vida += 50
-        if(this.vida > this.vidaMax)
-            this.vida = this.vidaMax;
+        this.vida += this.vidaMax * 0.10
     }
     
     subirNivel(){
@@ -68,19 +76,24 @@ class npc{
     
 }
 
-var bestia = new npc(100,25,10);
+//Inicializacion de objetos
+
+var bestia = new npc(100,40,10);
 
 var jugador =  new npc(200,40,15);
+
+//Actualizo los campos
 
 document.addEventListener("DOMContentLoaded", () => {
     actualizar()
 })
 
+//Eventos
+
 ataque.addEventListener("click", () =>{
     if(jugador.getVida() > 0 && bestia.getVida() > 0){
     jugador.atacar(bestia);
     turnoEnemigo();
-    actualizar();
     }
     if(bestia.getVida() <= 0){
     siguiente.innerHTML = "Siguiente";
@@ -88,11 +101,21 @@ ataque.addEventListener("click", () =>{
     }
 })
 
+habilidad.addEventListener("click", () => {
+    if(jugador.getVida() > 0 && bestia.getVida() > 0){
+        jugador.habilidad();
+        turnoEnemigo();
+    }
+})
+
+//Siguiente: Para cuando vencemos en la batalla
+
 siguiente.addEventListener("click", () => {
     siguiente.style.display = "none";
     bestia.subirNivel();
     jugador.subirNivel();
     actualizar();
+    quiengana.innerHTML = "";
 })
 
 function actualizar(){
@@ -108,4 +131,5 @@ function actualizar(){
 
 function turnoEnemigo(){
     bestia.atacar(jugador)
+    actualizar();
 }
