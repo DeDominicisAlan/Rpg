@@ -12,17 +12,25 @@ body, html{
     height: 80%;
     background-color: black;
     color: white;
+    text-align: center;
 }
 
 .personaje{
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 }
 
 #elecciones{
     height: 20%;
     background-color: rgb(151, 43, 4);
+}
+
+.estado{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .boton{
@@ -35,4 +43,41 @@ body, html{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+#siguiente{
+    display: none;
+}
+
+
+
+@media (max-width: 1000px){
+    img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 600px){
+    #quiengana{
+        font-size: 10px;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 320px){
+    #combate{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .boton{
+        font-size: 10px;
+        
+    }
+
 }
